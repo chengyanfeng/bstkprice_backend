@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	beego.BConfig.Listen.HTTPPort = 9700                     //端口设置
+	beego.BConfig.Listen.HTTPPort = 6001                     //端口设置
 	beego.BConfig.RecoverPanic = true
 	RunTime := controllers.MainController{}
 	go TimeGetToken(RunTime)
