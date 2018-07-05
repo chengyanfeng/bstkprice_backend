@@ -1,15 +1,19 @@
 package main
 
 import (
-	_ "mytoken/routers"
+	_ "bstkprice_backend/routers"
 	"github.com/astaxie/beego"
-	"mytoken/controllers"
+	"bstkprice_backend/controllers"
 	"time"
+	"github.com/astaxie/beego/context"
 )
 
-func main() {
+var ctx *context.Context
 
-	beego.BConfig.Listen.HTTPPort = 6001                     //端口设置
+func main() {
+	ctx.Output.Header("Access-Control-Allow-Origin", "*")
+	ctx.Output.Header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept")
+	beego.BConfig.Listen.HTTPPort = 6001 //端口设置
 	beego.BConfig.RecoverPanic = true
 	RunTime := controllers.MainController{}
 	go TimeGetToken(RunTime)

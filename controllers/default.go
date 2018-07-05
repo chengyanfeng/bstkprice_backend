@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"encoding/json"
 	"fmt"
-	"mytoken/models"
+	"bstkprice_backend/models"
 )
 
 var newWork = models.AllNetWork{}

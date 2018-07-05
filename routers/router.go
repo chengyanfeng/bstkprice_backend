@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"mytoken/controllers"
+	"bstkprice_backend/controllers"
 	"github.com/astaxie/beego"
 )
 
