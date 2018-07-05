@@ -57,6 +57,11 @@ func (c *MainController) GetToken() {
 	Turnover_rate := data["turnover_rate"].(string)
 	Volume_24h := data["volume_24h"].(string)
 	Volume_24h_from := data["volume_24h_from"].(float64)
+	Percent_change_display := data["percent_change_display"].(string)
+	Price_display := data["price_display"].(string)
+	Price_btc := data["price_btc"].(float64)
+	Price_usd := data["price_usd"].(float64)
+
 	Timestamps := p["timestamp"].(interface{})
 	Timestamp := Timestamps.(float64)
 	newWork.Name = currency
@@ -65,6 +70,10 @@ func (c *MainController) GetToken() {
 	newWork.Turnover_rate = Turnover_rate
 	newWork.Volume_24h = Volume_24h
 	newWork.Volume_24h_from = Volume_24h_from
+	newWork.Percent_change_display = Percent_change_display
+	newWork.Price_display = Price_display
+	newWork.Price_btc = Price_btc
+	newWork.Price_usd = Price_usd
 	newWork.Timestamp = Timestamp
 }
 func (c *MainController) GetBstk() {

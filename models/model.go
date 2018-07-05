@@ -7,7 +7,11 @@ type AllNetWork struct {
 	Volume_24h             string  //24小时成交率
 	Volume_24h_from        float64 //24小时成交量
 	Market_cap_display_cny float64 //流通市值
-	Timestamp              float64
+	Percent_change_display string  //综合下降率
+	Price_display          string  //价格
+	Price_btc              float64 //btc 价格
+	Price_usd              float64 //上次价格
+	Timestamp              float64 //时间
 }
 type Bstk struct {
 	Com_id                 string  //名称
