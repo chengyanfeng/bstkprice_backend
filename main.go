@@ -8,10 +8,7 @@ import (
 	"github.com/astaxie/beego/plugins/cors"
 )
 
-
-
 func main() {
-
 
 	beego.BConfig.Listen.HTTPPort = 6001 //端口设置
 	beego.BConfig.RecoverPanic = true
