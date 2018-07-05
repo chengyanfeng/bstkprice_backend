@@ -61,7 +61,6 @@ func (c *MainController) GetToken() {
 	Price_display := data["price_display"].(string)
 	Price_btc := data["price_btc"].(float64)
 	Price_usd := data["price_usd"].(float64)
-
 	Timestamps := p["timestamp"].(interface{})
 	Timestamp := Timestamps.(float64)
 	newWork.Name = currency
