@@ -5,16 +5,23 @@ import (
 	"github.com/astaxie/beego"
 	"bstkprice_backend/controllers"
 	"time"
-	"github.com/astaxie/beego/context"
+	"github.com/astaxie/beego/plugins/cors"
 )
 
-var ctx *context.Context
+
 
 func main() {
-	ctx.Output.Header("Access-Control-Allow-Origin", "*")
-	ctx.Output.Header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept")
+
+
 	beego.BConfig.Listen.HTTPPort = 6001 //端口设置
 	beego.BConfig.RecoverPanic = true
+	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"POST", "GET"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 	RunTime := controllers.MainController{}
 	go TimeGetToken(RunTime)
 	beego.Run()
