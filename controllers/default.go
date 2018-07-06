@@ -11,20 +11,19 @@ import (
 
 var newWork = models.AllNetWork{}
 var listRstk = make(map[int]models.Bstk)
-
+var returnMap=make(map[string]interface{})
 type P map[string]interface{}
 type MainController struct {
 	beego.Controller
 }
 
 func (c *MainController) GetData() {
-	c.Data["json"] = newWork
+	returnMap["listData"]=listRstk
+	returnMap["summaryData"] = newWork
+	c.Data["json"] = returnMap
 	c.ServeJSON()
 }
-func (c *MainController) GetList() {
-	c.Data["json"] = listRstk
-	c.ServeJSON()
-}
+
 func Get(url string) (content string, statusCode int) {
 	resp, err1 := http.Get(url)
 	if err1 != nil {
