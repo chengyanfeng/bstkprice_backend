@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"bstkprice_backend/models"
+	"strings"
+	"lian/util"
 )
 
 var newWork = models.AllNetWork{}
@@ -36,13 +38,17 @@ func Get(url string) (content string, statusCode int) {
 		statusCode = -200
 		return
 	}
-	fmt.Printf("data", data)
 	statusCode = resp.StatusCode
 	content = string(data)
 	return
 }
 
 func (c *MainController) GetToken() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("解析错误：", err)
+		}
+	}()
 
 	s, statusCode := Get("https://mytoken.io/api/ticker/currencydetail?currency_on_market_id=821689817&timestamp=1530685209731&code=7b2c3a40edcc4847759b9cbed7bbc19a&platform=m&v=1.0.0&language=zh_CN&legal_currency=CNY")
 	if statusCode != 200 {
@@ -75,6 +81,11 @@ func (c *MainController) GetToken() {
 	newWork.Timestamp = Timestamp
 }
 func (c *MainController) GetBstk() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("解析错误：", err)
+		}
+	}()
 
 	s, statusCode := Get("https://mytoken.io/api/ticker/currencyexchangelist?currency_id=345463&page=1&size=10000&timestamp=1530692456025&code=359ac61abffb68f9532faa99fa649131&platform=m&v=1.0.0&language=zh_CN&legal_currency=CNY")
 	if statusCode != 200 {
@@ -84,6 +95,8 @@ func (c *MainController) GetBstk() {
 	data := p["data"].(map[string]interface{})
 	Timestamp := p["timestamp"].(float64)
 	list := data["list"].([]interface{})
+	var bitzExchange = "https://www.bit-z.pro/exchange/bstk_"
+	var c2cExchange = "https://coin2coin.jp/exchange/"
 	for k, v := range list {
 		listv := v.(map[string]interface{})
 		rstk := models.Bstk{}
@@ -93,7 +106,15 @@ func (c *MainController) GetBstk() {
 		Percent_change_display := listv["percent_change_display"].(string)
 		Price_display := listv["price_display"].(string)
 		Price_display_cny := listv["price_display_cny"].(float64)
+		pairName:=util.ToString(strings.Split(Com_id,"_")[1])
+		Url:=""
+		if Market_name=="C2C"{
+			Url += c2cExchange  +pairName+ "_BSTK";
+		}else{
+			Url += bitzExchange + strings.ToLower(pairName);
+		}
 		rstk.Com_id = Com_id
+		rstk.Url=Url
 		rstk.Volume_24h = Volume_24h
 		rstk.Market_name = Market_name
 		rstk.Percent_change_display = Percent_change_display

@@ -1,0 +1,16 @@
+2018/07/09 14:34:28.938 [I] http server Running on http://:6001
+2018/07/09 14:36:30.211 [I] http server Running on http://:6001
+2018/07/09 14:36:45.222 [D] 127.0.0.1 - - [09/Jul/2018 02:36:45] "GET /data HTTP/1.1 200 0" 0.000000  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+
+2018/07/09 14:36:45.685 [D] 127.0.0.1 - - [09/Jul/2018 02:36:45] "GET /favicon.ico HTTP/1.1 404 0" 0.002006 http://127.0.0.1:6001/data Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+
+2018/07/09 14:46:57.744 [I] http server Running on http://:6001
+2018/07/09 14:47:05.238 [D] 127.0.0.1 - - [09/Jul/2018 02:47:05] "GET /data HTTP/1.1 200 0" 0.000968  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+
+2018/07/09 14:47:43.807 [I] http server Running on http://:6001
+2018/07/09 14:47:53.145 [D] 127.0.0.1 - - [09/Jul/2018 02:47:53] "GET /data HTTP/1.1 200 0" 0.000000  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+
+2018/07/09 14:55:38.557 [I] http server Running on http://:6001
+2018/07/09 14:56:47.663 [I] http server Running on http://:6001
+2018/07/09 14:56:58.664 [I] http server Running on http://:6001
+2018/07/13 14:21:17.064 [I] http server Running on http://:6001

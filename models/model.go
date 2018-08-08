@@ -21,4 +21,5 @@ type Bstk struct {
 	Percent_change_display string  //今日涨幅
 	Volume_24h             string  //流通市值
 	Timestamp              float64
+	Url                    string
 }
