@@ -20,6 +20,12 @@ type MainController struct {
 }
 
 func (c *MainController) GetData() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("解析错误：", err)
+		}
+	}()
+
 	returnMap["listData"]=listRstk
 	returnMap["summaryData"] = newWork
 	c.Data["json"] = returnMap
@@ -27,6 +33,11 @@ func (c *MainController) GetData() {
 }
 
 func Get(url string) (content string, statusCode int) {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("解析错误：", err)
+		}
+	}()
 	resp, err1 := http.Get(url)
 	if err1 != nil {
 		statusCode = -100
@@ -108,11 +119,16 @@ func (c *MainController) GetBstk() {
 		Price_display_cny := listv["price_display_cny"].(float64)
 		pairName:=util.ToString(strings.Split(Com_id,"_")[1])
 		Url:=""
-		if Market_name=="C2C"{
-			Url += c2cExchange  +pairName+ "_BSTK";
-		}else{
-			Url += bitzExchange + strings.ToLower(pairName);
+		if Market_name=="cmc"{
+			Url=""
+		}else {
+			if Market_name=="COIN2COIN"{
+				Url += c2cExchange  +pairName+ "_BSTK";
+			}else{
+				Url += bitzExchange + strings.ToLower(pairName);
+			}
 		}
+
 		rstk.Com_id = Com_id
 		rstk.Url=Url
 		rstk.Volume_24h = Volume_24h
